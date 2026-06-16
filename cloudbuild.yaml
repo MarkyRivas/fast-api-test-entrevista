@@ -1,8 +1,16 @@
 steps:
-  # Construye la imagen usando tu Dockerfile
+  # 1. Construir la imagen con la etiqueta de Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/fast-api-test:$COMMIT_SHA', '.']
+    args: 
+      - 'build'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/fast-api-test:$TAG_NAME'
+      - '.'
 
-# Aquí resolvemos tu error
+# 2. ¡La clave mágica! Esto le dice a Cloud Build que suba la imagen al terminar
+images:
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/fast-api-test:$TAG_NAME'
+
+# 3. La solución a tu error original de logs
 options:
   logging: CLOUD_LOGGING_ONLY
