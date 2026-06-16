@@ -7,10 +7,10 @@ steps:
       - 'us-central1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/fast-api-test:$TAG_NAME'
       - '.'
 
-# 2. ¡La clave mágica! Esto le dice a Cloud Build que suba la imagen al terminar
+# Cambiar el nombre del repositorio y la imagen según tu configuración
 images:
   - 'us-central1-docker.pkg.dev/$PROJECT_ID/cloud-run-source-deploy/fast-api-test:$TAG_NAME'
 
-# 3. La solución a tu error original de logs
+
 options:
   logging: CLOUD_LOGGING_ONLY
